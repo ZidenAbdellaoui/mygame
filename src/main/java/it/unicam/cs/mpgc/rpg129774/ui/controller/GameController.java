@@ -24,6 +24,8 @@ public class GameController implements ServiceAware {
     @FXML private Label locationDescLabel;
     @FXML private VBox travelButtonsContainer;
     @FXML private Button exploreButton;
+    @FXML private Button sleepButton;
+    @FXML private Button questsButton;
 
     @Override
     public void setGameService(Object gameService) {
@@ -45,11 +47,24 @@ public class GameController implements ServiceAware {
                 hero.getGold(), hero.getStats().getXp(), hero.getStats().getXpToNextLevel()));
 
         Location loc = gameService.getCurrentLocation();
-        locationNameLabel.setText(loc.getName());
+        if (loc.getType() == it.unicam.cs.mpgc.rpg129774.model.map.LocationType.TOWN) {
+            locationNameLabel.setText(loc.getName() + " — Day " + gameService.getCurrentState().getDayCounter());
+            sleepButton.setVisible(true);
+            sleepButton.setManaged(true);
+            questsButton.setVisible(true);
+            questsButton.setManaged(true);
+        } else {
+            locationNameLabel.setText(loc.getName());
+            sleepButton.setVisible(false);
+            sleepButton.setManaged(false);
+            questsButton.setVisible(false);
+            questsButton.setManaged(false);
+        }
         locationDescLabel.setText(loc.getDescription());
 
         // Explore button is visible only if location has enemies
         exploreButton.setVisible(loc.hasEnemies());
+        exploreButton.setManaged(loc.hasEnemies());
 
         travelButtonsContainer.getChildren().clear();
         for (Location dest : gameService.getAvailableLocations()) {
@@ -70,6 +85,17 @@ public class GameController implements ServiceAware {
         } else {
             showAlert("Safe", "There are no monsters here.");
         }
+    }
+
+    @FXML
+    private void onSleep() {
+        Hero hero = gameService.getCurrentState().getHero();
+        hero.getStats().heal(hero.getStats().getMaxHp());
+        hero.getStats().restoreMana(hero.getStats().getMaxMana());
+        gameService.getCurrentState().incrementDay();
+        gameService.saveGame();
+        showAlert("Rested", "You slept well in the tavern. HP and Mana are fully restored, and the game has been saved. Good morning!");
+        refreshView();
     }
 
     @FXML

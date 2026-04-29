@@ -20,8 +20,9 @@
             
             <HBox alignment="CENTER" spacing="20">
                 <Button fx:id="exploreButton" text="Explore / Fight" onAction="#onExplore" styleClass="action-btn, danger-btn"/>
+                <Button fx:id="sleepButton" text="Sleep in Tavern" onAction="#onSleep" styleClass="action-btn, primary-btn"/>
                 <Button text="Inventory" onAction="#onInventory" styleClass="action-btn"/>
-                <Button text="Quests" onAction="#onQuests" styleClass="action-btn"/>
+                <Button fx:id="questsButton" text="Quests" onAction="#onQuests" styleClass="action-btn"/>
             </HBox>
         </VBox>
     </center>

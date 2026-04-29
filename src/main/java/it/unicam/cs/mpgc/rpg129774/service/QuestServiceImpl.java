@@ -36,6 +36,9 @@ public class QuestServiceImpl implements QuestService {
 
     @Override
     public void acceptQuest(Quest quest) {
+        if (!getActiveQuests().isEmpty()) {
+            throw new IllegalStateException("You can only have 1 active quest at a time.");
+        }
         quest.accept();
     }
 

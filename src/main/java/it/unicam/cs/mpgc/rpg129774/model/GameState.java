@@ -17,6 +17,7 @@ public class GameState {
     private Hero hero;
     private String currentLocationId;
     private int totalPlayTimeSeconds;
+    private int dayCounter;
     private final List<String> completedQuestIds;
 
     public GameState(Hero hero, String currentLocationId) {
@@ -25,6 +26,7 @@ public class GameState {
         this.hero = hero;
         this.currentLocationId = currentLocationId;
         this.totalPlayTimeSeconds = 0;
+        this.dayCounter = 1;
         this.completedQuestIds = new ArrayList<>();
     }
 
@@ -41,6 +43,8 @@ public class GameState {
     public void setCurrentLocationId(String id) { this.currentLocationId = id; }
     public int getTotalPlayTimeSeconds() { return totalPlayTimeSeconds; }
     public void addPlayTime(int seconds) { this.totalPlayTimeSeconds += seconds; }
+    public int getDayCounter() { return dayCounter; }
+    public void incrementDay() { this.dayCounter++; }
     public List<String> getCompletedQuestIds() { return List.copyOf(completedQuestIds); }
     public void setSaveDate(String date) { this.saveDate = date; }
 }

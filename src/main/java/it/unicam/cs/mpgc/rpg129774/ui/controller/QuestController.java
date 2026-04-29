@@ -94,8 +94,12 @@ public class QuestController implements ServiceAware {
             return;
         }
         Quest quest = availableQuests.get(idx);
-        questService.acceptQuest(quest);
-        refreshLists();
+        try {
+            questService.acceptQuest(quest);
+            refreshLists();
+        } catch (IllegalStateException e) {
+            showAlert("Quest Limit Reached", e.getMessage());
+        }
     }
 
     @FXML
