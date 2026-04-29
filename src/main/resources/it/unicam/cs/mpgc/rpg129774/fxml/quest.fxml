@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<BorderPane styleClass="menu-root" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="it.unicam.cs.mpgc.rpg129774.ui.controller.QuestController">
+
+    <top>
+        <Label text="Quest Board" styleClass="title-label" BorderPane.alignment="CENTER"/>
+    </top>
+
+    <center>
+        <HBox alignment="CENTER" spacing="40">
+
+            <!-- Available Quests -->
+            <VBox alignment="CENTER" spacing="10" prefWidth="380">
+                <Label text="Available Quests" styleClass="subtitle-label"/>
+                <ListView fx:id="availableList" prefHeight="260"/>
+                <Button text="Accept Quest" onAction="#onAccept" styleClass="action-btn, primary-btn"/>
+            </VBox>
+
+            <!-- Active Quests -->
+            <VBox alignment="CENTER" spacing="10" prefWidth="380">
+                <Label text="Active Quests" styleClass="subtitle-label"/>
+                <ListView fx:id="activeList" prefHeight="260"/>
+                <Label fx:id="progressLabel" styleClass="desc-label" wrapText="true" maxWidth="360" textAlignment="CENTER"/>
+            </VBox>
+
+        </HBox>
+    </center>
+
+    <bottom>
+        <VBox alignment="CENTER" spacing="10" styleClass="bottom-bar">
+            <Label fx:id="detailLabel" styleClass="desc-label" wrapText="true" maxWidth="700" textAlignment="CENTER"/>
+            <Button text="Back" onAction="#onBack" styleClass="sys-btn"/>
+        </VBox>
+    </bottom>
+
+</BorderPane>

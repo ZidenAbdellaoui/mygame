@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<BorderPane styleClass="game-root" xmlns:fx="http://javafx.com/fxml" fx:controller="it.unicam.cs.mpgc.rpg129774.ui.controller.GameController">
+    <!-- Top Bar: Hero Stats -->
+    <top>
+        <HBox styleClass="top-bar" alignment="CENTER_LEFT" spacing="20">
+            <Label fx:id="heroNameLabel" styleClass="hero-name-label"/>
+            <Region HBox.hgrow="ALWAYS" />
+            <Label fx:id="heroStatsLabel" styleClass="stats-label" wrapText="true" textAlignment="RIGHT"/>
+        </HBox>
+    </top>
+
+    <!-- Center: Location Info & Actions -->
+    <center>
+        <VBox alignment="CENTER" spacing="30">
+            <Label fx:id="locationNameLabel" styleClass="location-title"/>
+            <Label fx:id="locationDescLabel" styleClass="desc-label" wrapText="true" maxWidth="600" textAlignment="CENTER"/>
+            
+            <HBox alignment="CENTER" spacing="20">
+                <Button fx:id="exploreButton" text="Explore / Fight" onAction="#onExplore" styleClass="action-btn, danger-btn"/>
+                <Button text="Inventory" onAction="#onInventory" styleClass="action-btn"/>
+                <Button text="Quests" onAction="#onQuests" styleClass="action-btn"/>
+            </HBox>
+        </VBox>
+    </center>
+
+    <!-- Bottom: Navigation Map Options -->
+    <bottom>
+        <VBox alignment="CENTER" spacing="15" styleClass="bottom-bar">
+            <Label text="Where to?" styleClass="subtitle-label"/>
+            <VBox fx:id="travelButtonsContainer" alignment="CENTER" spacing="10"/>
+            <HBox alignment="CENTER" spacing="20">
+                <Button text="Save Game" onAction="#onSave" styleClass="sys-btn"/>
+                <Button text="Main Menu" onAction="#onMainMenu" styleClass="sys-btn"/>
+            </HBox>
+        </VBox>
+    </bottom>
+</BorderPane>

@@ -1,0 +1,52 @@
+[
+  {
+    "id": "w_iron_sword",
+    "name": "Iron Sword",
+    "description": "A standard issue iron sword.",
+    "goldValue": 25,
+    "type": "WEAPON",
+    "attackBonus": 5
+  },
+  {
+    "id": "w_steel_axe",
+    "name": "Steel Battle Axe",
+    "description": "A heavy, deadly weapon.",
+    "goldValue": 75,
+    "type": "WEAPON",
+    "attackBonus": 12
+  },
+  {
+    "id": "a_leather",
+    "name": "Leather Armor",
+    "description": "Lightweight, basic protection.",
+    "goldValue": 30,
+    "type": "ARMOR",
+    "defenseBonus": 3
+  },
+  {
+    "id": "a_plate",
+    "name": "Steel Plate",
+    "description": "Heavy armor that deflects most blows.",
+    "goldValue": 150,
+    "type": "ARMOR",
+    "defenseBonus": 10
+  },
+  {
+    "id": "p_minor_health",
+    "name": "Minor Health Potion",
+    "description": "Restores 50 HP.",
+    "goldValue": 10,
+    "type": "POTION",
+    "healAmount": 50,
+    "manaAmount": 0
+  },
+  {
+    "id": "p_major_health",
+    "name": "Major Health Potion",
+    "description": "Restores 150 HP.",
+    "goldValue": 35,
+    "type": "POTION",
+    "healAmount": 150,
+    "manaAmount": 0
+  }
+]

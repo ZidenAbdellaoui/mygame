@@ -1,0 +1,43 @@
+[
+  {
+    "id": "q1",
+    "title": "A Nuisance in the Woods",
+    "description": "The town guards are busy. Help them clear out some goblins from the Whispering Woods.",
+    "xpReward": 100,
+    "goldReward": 50,
+    "requiredKills": {
+      "goblin": 3
+    }
+  },
+  {
+    "id": "q2",
+    "title": "The Undead Menace",
+    "description": "Skeletons have been spotted wandering near the old ruins. Put them back to rest.",
+    "xpReward": 250,
+    "goldReward": 100,
+    "requiredKills": {
+      "skeleton": 5
+    }
+  },
+  {
+    "id": "q3",
+    "title": "Clear the Roads",
+    "description": "Bandits are disrupting the trade routes. Show them the error of their ways.",
+    "xpReward": 200,
+    "goldReward": 150,
+    "requiredKills": {
+      "bandit": 4,
+      "wolf": 2
+    }
+  },
+  {
+    "id": "q4",
+    "title": "Dragon Slayer",
+    "description": "Defeat the mighty Shadow Dragon residing in The Dark Throne.",
+    "xpReward": 2000,
+    "goldReward": 1000,
+    "requiredKills": {
+      "dragon": 1
+    }
+  }
+]

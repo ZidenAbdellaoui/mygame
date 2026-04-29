@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<VBox alignment="CENTER" spacing="20" styleClass="menu-root" xmlns:fx="http://javafx.com/fxml" fx:controller="it.unicam.cs.mpgc.rpg129774.ui.controller.CharacterCreationController">
+    <Label text="Create Your Hero" styleClass="title-label"/>
+    
+    <VBox alignment="CENTER" spacing="10" maxWidth="400">
+        <Label text="Hero Name"/>
+        <TextField fx:id="nameField" promptText="Enter your name..."/>
+    </VBox>
+    
+    <HBox alignment="CENTER" spacing="15">
+        <fx:define>
+            <ToggleGroup fx:id="classGroup"/>
+        </fx:define>
+        <ToggleButton text="Warrior" toggleGroup="$classGroup" userData="WARRIOR" styleClass="class-btn"/>
+        <ToggleButton text="Mage" toggleGroup="$classGroup" userData="MAGE" styleClass="class-btn"/>
+        <ToggleButton text="Rogue" toggleGroup="$classGroup" userData="ROGUE" styleClass="class-btn"/>
+        <ToggleButton text="Paladin" toggleGroup="$classGroup" userData="PALADIN" styleClass="class-btn"/>
+    </HBox>
+    
+    <Label fx:id="classDescription" styleClass="desc-label" wrapText="true" prefWidth="400" textAlignment="CENTER" text="Select a class to read its description."/>
+    
+    <HBox alignment="CENTER" spacing="20">
+        <Button text="Back" onAction="#onBack" styleClass="menu-btn"/>
+        <Button text="Begin Adventure" onAction="#onCreate" styleClass="menu-btn, primary-btn"/>
+    </HBox>
+</VBox>

@@ -1,0 +1,22 @@
+# Gradle
+.gradle/
+build/
+gradle-bin/
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+bin/
+
+# Java
+*.class
+
+# Saves (local game data – not committed)
+saves/
+
+# OS
+.DS_Store
+Thumbs.db

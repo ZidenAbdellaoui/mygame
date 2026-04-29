@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<BorderPane styleClass="combat-root" xmlns:fx="http://javafx.com/fxml" fx:controller="it.unicam.cs.mpgc.rpg129774.ui.controller.CombatController">
+    <top>
+        <Label text="Combat!" styleClass="title-label" BorderPane.alignment="CENTER"/>
+    </top>
+    
+    <center>
+        <HBox alignment="CENTER" spacing="50">
+            <!-- Hero Side -->
+            <VBox alignment="CENTER" spacing="10" styleClass="combat-card">
+                <Label fx:id="heroName" styleClass="combat-name"/>
+                <ProgressBar fx:id="heroHpBar" prefWidth="200" progress="1.0" styleClass="hp-bar"/>
+                <Label fx:id="heroHpLabel" styleClass="hp-text"/>
+            </VBox>
+
+            <Label text="VS" styleClass="vs-label"/>
+
+            <!-- Enemy Side -->
+            <VBox alignment="CENTER" spacing="10" styleClass="combat-card">
+                <Label fx:id="enemyName" styleClass="combat-name"/>
+                <ProgressBar fx:id="enemyHpBar" prefWidth="200" progress="1.0" styleClass="hp-bar"/>
+                <Label fx:id="enemyHpLabel" styleClass="hp-text"/>
+            </VBox>
+        </HBox>
+    </center>
+
+    <bottom>
+        <VBox alignment="CENTER" spacing="20" styleClass="bottom-bar">
+            <TextArea fx:id="combatLog" editable="false" prefHeight="150" prefWidth="800" styleClass="combat-log" wrapText="true"/>
+            <HBox alignment="CENTER" spacing="20">
+                <Button fx:id="attackBtn" text="Attack" onAction="#onAttack" styleClass="action-btn, primary-btn"/>
+                <Button fx:id="healBtn" text="Use Potion" onAction="#onHeal" styleClass="action-btn"/>
+                <Button fx:id="fleeBtn" text="Flee" onAction="#onFlee" styleClass="action-btn"/>
+            </HBox>
+        </VBox>
+    </bottom>
+</BorderPane>

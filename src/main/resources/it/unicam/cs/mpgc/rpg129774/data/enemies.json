@@ -1,0 +1,72 @@
+[
+  {
+    "id": "goblin",
+    "name": "Cave Goblin",
+    "hp": 30,
+    "attack": 12,
+    "defense": 3,
+    "speed": 8,
+    "xpReward": 25,
+    "goldDrop": 10
+  },
+  {
+    "id": "wolf",
+    "name": "Dire Wolf",
+    "hp": 45,
+    "attack": 15,
+    "defense": 2,
+    "speed": 12,
+    "xpReward": 35,
+    "goldDrop": 5
+  },
+  {
+    "id": "bat",
+    "name": "Giant Bat",
+    "hp": 20,
+    "attack": 10,
+    "defense": 1,
+    "speed": 15,
+    "xpReward": 20,
+    "goldDrop": 2
+  },
+  {
+    "id": "skeleton",
+    "name": "Undead Warrior",
+    "hp": 60,
+    "attack": 18,
+    "defense": 6,
+    "speed": 5,
+    "xpReward": 50,
+    "goldDrop": 15
+  },
+  {
+    "id": "bandit",
+    "name": "Highwayman",
+    "hp": 55,
+    "attack": 20,
+    "defense": 4,
+    "speed": 10,
+    "xpReward": 45,
+    "goldDrop": 25
+  },
+  {
+    "id": "orc",
+    "name": "Orc Brute",
+    "hp": 100,
+    "attack": 25,
+    "defense": 8,
+    "speed": 4,
+    "xpReward": 80,
+    "goldDrop": 40
+  },
+  {
+    "id": "dragon",
+    "name": "Shadow Dragon",
+    "hp": 500,
+    "attack": 45,
+    "defense": 20,
+    "speed": 25,
+    "xpReward": 1000,
+    "goldDrop": 500
+  }
+]

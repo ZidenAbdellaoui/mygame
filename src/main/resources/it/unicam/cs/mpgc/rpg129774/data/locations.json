@@ -1,0 +1,42 @@
+[
+  {
+    "id": "town",
+    "name": "Oakhaven Town",
+    "type": "TOWN",
+    "description": "A peaceful village nestled in the valley. A good place to rest, trade, and find new bounties.",
+    "possibleEnemyIds": [],
+    "connectedLocationIds": ["forest", "cave"]
+  },
+  {
+    "id": "forest",
+    "name": "Whispering Woods",
+    "type": "FOREST",
+    "description": "A dense forest filled with mysterious sounds. The trees seem to watch your every move.",
+    "possibleEnemyIds": ["goblin", "wolf", "bandit"],
+    "connectedLocationIds": ["town", "dungeon"]
+  },
+  {
+    "id": "cave",
+    "name": "Echostone Caverns",
+    "type": "CAVE",
+    "description": "Dark, damp caves where only the desperate or foolish venture.",
+    "possibleEnemyIds": ["goblin", "bat", "skeleton"],
+    "connectedLocationIds": ["town"]
+  },
+  {
+    "id": "dungeon",
+    "name": "Ruins of Aethelgard",
+    "type": "DUNGEON",
+    "description": "An ancient stronghold, now overrun by dark forces.",
+    "possibleEnemyIds": ["skeleton", "bandit", "orc"],
+    "connectedLocationIds": ["forest", "bossroom"]
+  },
+  {
+    "id": "bossroom",
+    "name": "The Dark Throne",
+    "type": "BOSS",
+    "description": "The heart of the ruins. The air here is heavy with dark magic.",
+    "possibleEnemyIds": ["dragon"],
+    "connectedLocationIds": ["dungeon"]
+  }
+]

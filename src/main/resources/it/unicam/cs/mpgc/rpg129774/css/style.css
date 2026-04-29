@@ -1,0 +1,160 @@
+/* Root Backgrounds */
+.root {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-background-color: #1a1a1d;
+    -fx-text-fill: #e5e5e5;
+}
+
+/* Base Texts */
+.label {
+    -fx-text-fill: #e5e5e5;
+}
+.title-label {
+    -fx-font-size: 42px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #d4af37; /* Gold */
+    -fx-padding: 30 0 10 0;
+}
+.subtitle-label {
+    -fx-font-size: 24px;
+    -fx-text-fill: #a0a0a0;
+}
+.desc-label {
+    -fx-font-size: 16px;
+    -fx-text-fill: #cccccc;
+}
+
+/* Buttons */
+.button {
+    -fx-background-color: #2b2b36;
+    -fx-text-fill: #e5e5e5;
+    -fx-font-size: 16px;
+    -fx-padding: 10 20;
+    -fx-cursor: hand;
+    -fx-border-color: #3e3e4d;
+    -fx-border-width: 1px;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+}
+.button:hover {
+    -fx-background-color: #3e3e4d;
+    -fx-border-color: #555566;
+}
+.primary-btn {
+    -fx-border-color: #d4af37;
+    -fx-text-fill: #d4af37;
+}
+.primary-btn:hover {
+    -fx-background-color: #443c22;
+}
+.danger-btn {
+    -fx-border-color: #a83232;
+    -fx-text-fill: #ff6666;
+}
+.danger-btn:hover {
+    -fx-background-color: #4a2020;
+}
+.sys-btn {
+    -fx-font-size: 14px;
+    -fx-padding: 5 15;
+}
+.action-btn {
+    -fx-font-size: 18px;
+    -fx-min-width: 120px;
+}
+
+.class-btn {
+    -fx-padding: 15 20;
+    -fx-font-size: 16px;
+    -fx-background-color: #2b2b36;
+    -fx-text-fill: white;
+}
+.class-btn:selected {
+    -fx-background-color: #443c22;
+    -fx-border-color: #d4af37;
+}
+
+/* Text Fields & Lists */
+.text-field {
+    -fx-background-color: #2b2b36;
+    -fx-text-fill: white;
+    -fx-border-color: #3e3e4d;
+    -fx-padding: 10;
+    -fx-font-size: 16px;
+}
+.list-view {
+    -fx-background-color: #2b2b36;
+    -fx-control-inner-background: #2b2b36;
+}
+.list-cell {
+    -fx-text-fill: white;
+    -fx-padding: 10;
+}
+.list-cell:empty {
+    -fx-background-color: transparent;
+}
+.list-cell:filled:hover {
+    -fx-background-color: #3e3e4d;
+}
+.list-cell:filled:selected {
+    -fx-background-color: #443c22;
+    -fx-text-fill: #d4af37;
+}
+
+/* Game Hub */
+.top-bar {
+    -fx-background-color: #111113;
+    -fx-padding: 15 30;
+    -fx-border-color: #333;
+    -fx-border-width: 0 0 1 0;
+}
+.hero-name-label {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #d4af37;
+}
+.stats-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #aaa;
+}
+.location-title {
+    -fx-font-size: 48px;
+    -fx-text-fill: white;
+}
+.bottom-bar {
+    -fx-background-color: #1a1a1d;
+    -fx-padding: 20;
+}
+
+/* Combat */
+.combat-card {
+    -fx-background-color: #222;
+    -fx-padding: 30;
+    -fx-border-color: #444;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+}
+.combat-name {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+}
+.hp-text {
+    -fx-font-size: 16px;
+}
+.hp-bar .bar {
+    -fx-background-color: #a83232;
+}
+.hp-bar .track {
+    -fx-background-color: #111;
+}
+.vs-label {
+    -fx-font-size: 36px;
+    -fx-text-fill: #555;
+    -fx-font-style: italic;
+}
+.combat-log {
+    -fx-control-inner-background: #111;
+    -fx-font-family: monospace;
+    -fx-font-size: 14px;
+    -fx-text-fill: #00ff00;
+}
