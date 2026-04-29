@@ -67,7 +67,7 @@ public abstract class JsonRepository<T> implements Repository<T> {
         if (!Files.exists(file)) return Optional.empty();
         try (Reader reader = Files.newBufferedReader(file)) {
             return Optional.ofNullable(gson.fromJson(reader, getEntityType()));
-        } catch (IOException e) {
+        } catch (Exception e) {
             LOGGER.severe("Failed to load entity " + id + ": " + e.getMessage());
             return Optional.empty();
         }
@@ -82,8 +82,8 @@ public abstract class JsonRepository<T> implements Repository<T> {
                 try (Reader reader = Files.newBufferedReader(p)) {
                     T entity = gson.fromJson(reader, getEntityType());
                     if (entity != null) results.add(entity);
-                } catch (IOException e) {
-                    LOGGER.warning("Skipping unreadable file: " + p);
+                } catch (Exception e) {
+                    LOGGER.warning("Skipping unreadable or incompatible file: " + p);
                 }
             });
         } catch (IOException e) {
