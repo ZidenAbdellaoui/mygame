@@ -12,8 +12,14 @@
             <!-- Hero Side -->
             <VBox alignment="CENTER" spacing="10" styleClass="combat-card">
                 <Label fx:id="heroName" styleClass="combat-name"/>
-                <ProgressBar fx:id="heroHpBar" prefWidth="200" progress="1.0" styleClass="hp-bar"/>
-                <Label fx:id="heroHpLabel" styleClass="hp-text"/>
+                <VBox alignment="CENTER" spacing="2">
+                    <ProgressBar fx:id="heroHpBar" prefWidth="200" progress="1.0" styleClass="hp-bar"/>
+                    <Label fx:id="heroHpLabel" styleClass="hp-text"/>
+                </VBox>
+                <VBox alignment="CENTER" spacing="2">
+                    <ProgressBar fx:id="heroMpBar" prefWidth="200" progress="1.0" style="-fx-accent: #0088FF;"/>
+                    <Label fx:id="heroMpLabel" styleClass="hp-text"/>
+                </VBox>
             </VBox>
 
             <Label text="VS" styleClass="vs-label"/>

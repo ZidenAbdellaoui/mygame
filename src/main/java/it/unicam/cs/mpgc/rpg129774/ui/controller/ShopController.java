@@ -48,7 +48,15 @@ public class ShopController implements ServiceAware {
         shopList.getSelectionModel().selectedIndexProperty().addListener((obs, old, idx) -> {
             if (idx.intValue() >= 0 && idx.intValue() < catalog.size()) {
                 Item item = catalog.get(idx.intValue());
-                detailLabel.setText(item.getDescription());
+                StringBuilder details = new StringBuilder(item.getDescription() + "\n");
+                if (item instanceof Weapon w) {
+                    details.append(String.format("\nAttack: +%d\nAccuracy: %d%%", w.getAttackBonus(), (int)(w.getAccuracy() * 100)));
+                } else if (item instanceof Armor a) {
+                    details.append(String.format("\nDefense: +%d", a.getDefenseBonus()));
+                } else if (item instanceof Potion p) {
+                    details.append(String.format("\nHeal: %d HP\nMana Restore: %d MP", p.getHealAmount(), p.getManaAmount()));
+                }
+                detailLabel.setText(details.toString());
             }
         });
     }

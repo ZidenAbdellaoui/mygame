@@ -41,15 +41,20 @@ public class GameController implements ServiceAware {
     private void refreshView() {
         Hero hero = gameService.getCurrentState().getHero();
         heroNameLabel.setText(hero.getDisplayName() + " (Lvl " + hero.getStats().getLevel() + ")");
-        heroStatsLabel.setText(String.format("HP: %d/%d  |  Mana: %d/%d  |  ATK: %d  |  DEF: %d  |  Gold: %d\nXP: %d/%d",
+        double accuracy = hero.getEquippedWeapon() != null ? hero.getEquippedWeapon().getAccuracy() : 1.0;
+        int hitRate = (int) (accuracy * 100);
+
+        heroStatsLabel.setText(String.format("HP: %d/%d  |  Mana: %d/%d  |  ATK: %d  |  DEF: %d  |  Hit Rate: %d%%\nGold: %d  |  XP: %d/%d",
                 hero.getStats().getHp(), hero.getStats().getMaxHp(),
                 hero.getStats().getMana(), hero.getStats().getMaxMana(),
-                hero.getEffectiveAttack(), hero.getStats().getDefense(),
+                hero.getEffectiveAttack(), hero.getStats().getDefense(), hitRate,
                 hero.getGold(), hero.getStats().getXp(), hero.getStats().getXpToNextLevel()));
 
         Location loc = gameService.getCurrentLocation();
         if (loc.getType() == it.unicam.cs.mpgc.rpg129774.model.map.LocationType.TOWN) {
+            int sleepCost = gameService.getCurrentState().getDayCounter() * 5;
             locationNameLabel.setText(loc.getName() + " — Day " + gameService.getCurrentState().getDayCounter());
+            sleepButton.setText("Sleep in Tavern (" + sleepCost + " G)");
             sleepButton.setVisible(true);
             sleepButton.setManaged(true);
             questsButton.setVisible(true);
@@ -95,12 +100,18 @@ public class GameController implements ServiceAware {
     @FXML
     private void onSleep() {
         Hero hero = gameService.getCurrentState().getHero();
-        hero.getStats().heal(hero.getStats().getMaxHp());
-        hero.getStats().restoreMana(hero.getStats().getMaxMana());
-        gameService.getCurrentState().incrementDay();
-        gameService.saveGame();
-        showAlert("Rested", "You slept well in the tavern. HP and Mana are fully restored, and the game has been saved. Good morning!");
-        refreshView();
+        int sleepCost = gameService.getCurrentState().getDayCounter() * 5;
+        
+        if (hero.spendGold(sleepCost)) {
+            hero.getStats().heal(hero.getStats().getMaxHp());
+            hero.getStats().restoreMana(hero.getStats().getMaxMana());
+            gameService.getCurrentState().incrementDay();
+            gameService.saveGame();
+            showAlert("Rested", "You slept well in the tavern. HP and Mana are fully restored, and the game has been saved. Good morning!");
+            refreshView();
+        } else {
+            showAlert("Not Enough Gold", "You cannot afford to sleep at the tavern right now! It costs " + sleepCost + " G.");
+        }
     }
 
     @FXML

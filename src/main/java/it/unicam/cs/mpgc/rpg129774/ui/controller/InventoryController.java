@@ -23,6 +23,8 @@ public class InventoryController implements ServiceAware {
 
     @FXML private Label equippedWeaponLabel;
     @FXML private Label equippedArmorLabel;
+    @FXML private javafx.scene.control.Button unequipWeaponBtn;
+    @FXML private javafx.scene.control.Button unequipArmorBtn;
     @FXML private ListView<Item> itemListView;
 
     @Override
@@ -41,7 +43,10 @@ public class InventoryController implements ServiceAware {
         Armor a = gameService.getCurrentState().getHero().getEquippedArmor();
 
         equippedWeaponLabel.setText(w != null ? w.getName() : "None");
+        unequipWeaponBtn.setVisible(w != null);
+
         equippedArmorLabel.setText(a != null ? a.getName() : "None");
+        unequipArmorBtn.setVisible(a != null);
 
         itemListView.getItems().clear();
         itemListView.getItems().addAll(inventoryService.getItems());
@@ -81,6 +86,18 @@ public class InventoryController implements ServiceAware {
             inventoryService.removeItem(selected);
             refreshView();
         }
+    }
+
+    @FXML
+    private void onUnequipWeapon() {
+        gameService.getCurrentState().getHero().unequipWeapon();
+        refreshView();
+    }
+
+    @FXML
+    private void onUnequipArmor() {
+        gameService.getCurrentState().getHero().unequipArmor();
+        refreshView();
     }
 
     @FXML

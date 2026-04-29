@@ -26,6 +26,8 @@ public class CombatController implements ServiceAware {
     @FXML private Label heroName;
     @FXML private ProgressBar heroHpBar;
     @FXML private Label heroHpLabel;
+    @FXML private ProgressBar heroMpBar;
+    @FXML private Label heroMpLabel;
     
     @FXML private Label enemyName;
     @FXML private ProgressBar enemyHpBar;
@@ -53,8 +55,10 @@ public class CombatController implements ServiceAware {
         Enemy enemy = combatService.getCurrentEnemy();
 
         heroName.setText(hero.getDisplayName());
-        heroHpLabel.setText(hero.getStats().getHp() + " / " + hero.getStats().getMaxHp());
+        heroHpLabel.setText(hero.getStats().getHp() + " / " + hero.getStats().getMaxHp() + " HP");
         heroHpBar.setProgress((double) hero.getStats().getHp() / hero.getStats().getMaxHp());
+        heroMpLabel.setText(hero.getStats().getMana() + " / " + hero.getStats().getMaxMana() + " MP");
+        heroMpBar.setProgress(hero.getStats().getMaxMana() > 0 ? (double) hero.getStats().getMana() / hero.getStats().getMaxMana() : 0.0);
 
         enemyName.setText(enemy.getDisplayName());
         enemyHpLabel.setText(enemy.getStats().getHp() + " / " + enemy.getStats().getMaxHp());

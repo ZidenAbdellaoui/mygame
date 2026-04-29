@@ -20,7 +20,7 @@ public class Main extends Application {
         primaryStage.setTitle("Classic Fantasy RPG");
         primaryStage.setWidth(1366);
         primaryStage.setHeight(768);
-        primaryStage.setResizable(false);
+        primaryStage.setFullScreen(true);
 
         // Core dependency graph
         GameService gameService = new GameServiceImpl();
