@@ -59,6 +59,13 @@ public class Quest {
         if (status == QuestStatus.AVAILABLE) status = QuestStatus.IN_PROGRESS;
     }
 
+    public void abandon() {
+        if (status == QuestStatus.IN_PROGRESS) {
+            status = QuestStatus.AVAILABLE;
+            currentKills.replaceAll((k, v) -> 0);
+        }
+    }
+
     public String getProgressText() {
         if (requiredKills.isEmpty()) return "No kill objectives.";
         StringBuilder sb = new StringBuilder();

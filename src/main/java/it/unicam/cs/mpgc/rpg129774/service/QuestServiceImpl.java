@@ -43,6 +43,11 @@ public class QuestServiceImpl implements QuestService {
     }
 
     @Override
+    public void abandonQuest(Quest quest) {
+        quest.abandon();
+    }
+
+    @Override
     public List<Quest> notifyKill(String enemyId) {
         List<Quest> completed = new ArrayList<>();
         for (Quest q : allQuests) {

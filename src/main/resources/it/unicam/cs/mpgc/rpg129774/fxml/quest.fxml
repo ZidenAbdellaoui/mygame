@@ -24,6 +24,7 @@
                 <Label text="Active Quests" styleClass="subtitle-label"/>
                 <ListView fx:id="activeList" prefHeight="260"/>
                 <Label fx:id="progressLabel" styleClass="desc-label" wrapText="true" maxWidth="360" textAlignment="CENTER"/>
+                <Button text="Abandon Quest" onAction="#onAbandon" styleClass="action-btn, danger-btn"/>
             </VBox>
 
         </HBox>

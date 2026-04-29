@@ -70,6 +70,14 @@ public class Stats {
         this.mana = Math.min(maxMana, this.mana + amount);
     }
 
+    public boolean spendMana(int amount) {
+        if (this.mana >= amount) {
+            this.mana -= amount;
+            return true;
+        }
+        return false;
+    }
+
     public boolean isAlive() {
         return this.hp > 0;
     }

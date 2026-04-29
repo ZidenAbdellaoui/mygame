@@ -15,6 +15,8 @@ public interface QuestService {
 
     void acceptQuest(Quest quest);
 
+    void abandonQuest(Quest quest);
+
     /**
      * Notifies the service that an enemy was killed, updating all active quests.
      *

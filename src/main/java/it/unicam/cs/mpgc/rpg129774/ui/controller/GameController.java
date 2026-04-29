@@ -26,6 +26,7 @@ public class GameController implements ServiceAware {
     @FXML private Button exploreButton;
     @FXML private Button sleepButton;
     @FXML private Button questsButton;
+    @FXML private Button shopButton;
 
     @Override
     public void setGameService(Object gameService) {
@@ -53,12 +54,16 @@ public class GameController implements ServiceAware {
             sleepButton.setManaged(true);
             questsButton.setVisible(true);
             questsButton.setManaged(true);
+            shopButton.setVisible(true);
+            shopButton.setManaged(true);
         } else {
             locationNameLabel.setText(loc.getName());
             sleepButton.setVisible(false);
             sleepButton.setManaged(false);
             questsButton.setVisible(false);
             questsButton.setManaged(false);
+            shopButton.setVisible(false);
+            shopButton.setManaged(false);
         }
         locationDescLabel.setText(loc.getDescription());
 
@@ -106,6 +111,11 @@ public class GameController implements ServiceAware {
     @FXML
     private void onQuests() {
         SceneManager.getInstance().switchTo("/it/unicam/cs/mpgc/rpg129774/fxml/quest.fxml");
+    }
+
+    @FXML
+    private void onShop() {
+        SceneManager.getInstance().switchTo("/it/unicam/cs/mpgc/rpg129774/fxml/shop.fxml");
     }
 
     @FXML

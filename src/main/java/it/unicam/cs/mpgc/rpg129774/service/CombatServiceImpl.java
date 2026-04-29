@@ -33,6 +33,7 @@ public class CombatServiceImpl implements CombatService {
 
         switch (action) {
             case ATTACK -> handleAttack(result);
+            case CRIT_ATTACK -> handleCritAttack(result);
             case USE_ITEM -> handleUseItem(result, item);
             case FLEE -> {
                 handleFlee(result);
@@ -42,10 +43,14 @@ public class CombatServiceImpl implements CombatService {
 
         // Enemy counter-attack if still alive
         if (enemy.isAlive() && hero.isAlive()) {
-            int enemyDmg = enemy.calculateAttackDamage();
-            hero.takeDamage(enemyDmg);
-            result.heroDamageTaken(enemyDmg);
-            result.addMessage(enemy.getDisplayName() + " attacks for " + enemyDmg + " damage!");
+            if (Math.random() < 0.15) { // 15% flat hero dodge chance
+                result.addMessage("You dodged " + enemy.getDisplayName() + "'s attack!");
+            } else {
+                int enemyDmg = enemy.calculateAttackDamage();
+                hero.takeDamage(enemyDmg);
+                result.heroDamageTaken(enemyDmg);
+                result.addMessage(enemy.getDisplayName() + " attacks for " + enemyDmg + " damage!");
+            }
         }
 
         checkCombatEnd(result);
@@ -53,10 +58,31 @@ public class CombatServiceImpl implements CombatService {
     }
 
     private void handleAttack(CombatResult.Builder result) {
+        double accuracy = hero.getEquippedWeapon() != null ? hero.getEquippedWeapon().getAccuracy() : 1.0;
+        if (Math.random() > accuracy) {
+            result.addMessage(hero.getName() + " attacked but missed!");
+            return;
+        }
         int dmg = calcHeroDamage();
         enemy.takeDamage(dmg);
         result.heroDamageDealt(dmg);
         result.addMessage(hero.getName() + " attacks for " + dmg + " damage!");
+    }
+
+    private void handleCritAttack(CombatResult.Builder result) {
+        if (!hero.getStats().spendMana(10)) {
+            result.addMessage("Not enough mana for a critical attack!");
+            return;
+        }
+        double accuracy = hero.getEquippedWeapon() != null ? hero.getEquippedWeapon().getAccuracy() : 1.0;
+        if (Math.random() > accuracy) {
+            result.addMessage(hero.getName() + " used a Critical Attack but missed!");
+            return;
+        }
+        int dmg = calcHeroDamage() * 2;
+        enemy.takeDamage(dmg);
+        result.heroDamageDealt(dmg);
+        result.addMessage(hero.getName() + " lands a Critical Attack for " + dmg + " damage!");
     }
 
     private void handleUseItem(CombatResult.Builder result, Item item) {
@@ -101,6 +127,11 @@ public class CombatServiceImpl implements CombatService {
                     .goldGained(enemy.getGoldDrop());
             result.addMessage(enemy.getDisplayName() + " is defeated! +"
                     + enemy.getXpReward() + " XP, +" + enemy.getGoldDrop() + " gold.");
+            
+            hero.addGold(enemy.getGoldDrop());
+            if (hero.gainXp(enemy.getXpReward())) {
+                result.addMessage("Level Up! Your stats have increased!");
+            }
         } else if (!hero.isAlive()) {
             combatOver = true;
             result.over(true).heroWon(false);

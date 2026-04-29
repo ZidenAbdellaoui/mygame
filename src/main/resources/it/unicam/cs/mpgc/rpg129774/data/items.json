@@ -5,7 +5,8 @@
     "description": "A standard issue iron sword.",
     "goldValue": 25,
     "type": "WEAPON",
-    "attackBonus": 5
+    "attackBonus": 5,
+    "accuracy": 0.95
   },
   {
     "id": "w_steel_axe",
@@ -13,7 +14,8 @@
     "description": "A heavy, deadly weapon.",
     "goldValue": 75,
     "type": "WEAPON",
-    "attackBonus": 12
+    "attackBonus": 12,
+    "accuracy": 0.70
   },
   {
     "id": "a_leather",

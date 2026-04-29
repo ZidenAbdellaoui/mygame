@@ -6,6 +6,7 @@ package it.unicam.cs.mpgc.rpg129774.model.combat;
  */
 public enum CombatAction {
     ATTACK,
+    CRIT_ATTACK,
     USE_ITEM,
     FLEE
 }

@@ -103,6 +103,18 @@ public class QuestController implements ServiceAware {
     }
 
     @FXML
+    private void onAbandon() {
+        int idx = activeList.getSelectionModel().getSelectedIndex();
+        if (idx < 0) {
+            showAlert("No Quest Selected", "Please select an active quest to abandon.");
+            return;
+        }
+        Quest quest = activeQuests.get(idx);
+        questService.abandonQuest(quest);
+        refreshLists();
+    }
+
+    @FXML
     private void onBack() {
         SceneManager.getInstance().switchTo("/it/unicam/cs/mpgc/rpg129774/fxml/game.fxml");
     }

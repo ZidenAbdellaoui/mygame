@@ -33,6 +33,7 @@ public class CombatController implements ServiceAware {
     
     @FXML private TextArea combatLog;
     @FXML private Button attackBtn;
+    @FXML private Button critBtn;
     @FXML private Button healBtn;
     @FXML private Button fleeBtn;
 
@@ -70,6 +71,11 @@ public class CombatController implements ServiceAware {
     }
 
     @FXML
+    private void onCritAttack() {
+        processTurn(CombatAction.CRIT_ATTACK, null);
+    }
+
+    @FXML
     private void onHeal() {
         // Find first available potion in the hero's inventory
         it.unicam.cs.mpgc.rpg129774.model.item.Item potion =
@@ -96,12 +102,27 @@ public class CombatController implements ServiceAware {
 
         if (combatService.isCombatOver()) {
             attackBtn.setDisable(true);
+            critBtn.setDisable(true);
             healBtn.setDisable(true);
             fleeBtn.setDisable(true);
             
             if (result.isHeroWon()) {
                 // Notify quest service of the kill to update progress
-                gameService.getQuestService().notifyKill(combatService.getCurrentEnemy().getId());
+                java.util.List<it.unicam.cs.mpgc.rpg129774.model.quest.Quest> completedQuests = 
+                        gameService.getQuestService().notifyKill(combatService.getCurrentEnemy().getId());
+                if (!completedQuests.isEmpty()) {
+                    StringBuilder sb = new StringBuilder("Completed:\n");
+                    for (it.unicam.cs.mpgc.rpg129774.model.quest.Quest q : completedQuests) {
+                        sb.append("- ").append(q.getTitle()).append("\n");
+                    }
+                    Platform.runLater(() -> {
+                        javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION);
+                        alert.setTitle("Quest Completed!");
+                        alert.setHeaderText(null);
+                        alert.setContentText(sb.toString().trim());
+                        alert.showAndWait();
+                    });
+                }
             }
 
             // small delay before returning to town

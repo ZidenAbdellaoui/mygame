@@ -23,6 +23,7 @@
                 <Button fx:id="sleepButton" text="Sleep in Tavern" onAction="#onSleep" styleClass="action-btn, primary-btn"/>
                 <Button text="Inventory" onAction="#onInventory" styleClass="action-btn"/>
                 <Button fx:id="questsButton" text="Quests" onAction="#onQuests" styleClass="action-btn"/>
+                <Button fx:id="shopButton" text="Shop" onAction="#onShop" styleClass="action-btn"/>
             </HBox>
         </VBox>
     </center>
