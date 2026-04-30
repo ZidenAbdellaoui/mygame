@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
 /**
@@ -18,6 +19,7 @@ public class GameController implements ServiceAware {
 
     private GameService gameService;
 
+    @FXML private BorderPane gameRoot;
     @FXML private Label heroNameLabel;
     @FXML private Label heroStatsLabel;
     @FXML private Label locationNameLabel;
@@ -51,6 +53,8 @@ public class GameController implements ServiceAware {
                 hero.getGold(), hero.getStats().getXp(), hero.getStats().getXpToNextLevel()));
 
         Location loc = gameService.getCurrentLocation();
+        updateBackground(loc.getType());
+        
         if (loc.getType() == it.unicam.cs.mpgc.rpg129774.model.map.LocationType.TOWN) {
             int sleepCost = gameService.getCurrentState().getDayCounter() * 5;
             locationNameLabel.setText(loc.getName() + " — Day " + gameService.getCurrentState().getDayCounter());
@@ -144,5 +148,22 @@ public class GameController implements ServiceAware {
         Alert alert = new Alert(Alert.AlertType.INFORMATION, content, javafx.scene.control.ButtonType.OK);
         alert.setTitle(title);
         alert.showAndWait();
+    }
+
+    private void updateBackground(it.unicam.cs.mpgc.rpg129774.model.map.LocationType type) {
+        String imageName = switch (type) {
+            case TOWN -> "town.jpg";
+            case DUNGEON -> "dung.jpg";
+            case FOREST -> "forest.jpg";
+            case CAVE -> "cave.jpg";
+            case BOSS -> "drag.gif";
+        };
+        
+        java.net.URL resource = getClass().getResource("/it/unicam/cs/mpgc/rpg129774/img/" + imageName);
+        if (resource != null) {
+            gameRoot.setStyle("-fx-background-image: url('" + resource.toExternalForm() + "'); " +
+                              "-fx-background-size: cover; " +
+                              "-fx-background-position: center center;");
+        }
     }
 }

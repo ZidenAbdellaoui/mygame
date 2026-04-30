@@ -2,7 +2,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 
-<BorderPane styleClass="combat-root" xmlns:fx="http://javafx.com/fxml" fx:controller="it.unicam.cs.mpgc.rpg129774.ui.controller.CombatController">
+<BorderPane fx:id="combatRoot" styleClass="combat-root" xmlns:fx="http://javafx.com/fxml" fx:controller="it.unicam.cs.mpgc.rpg129774.ui.controller.CombatController">
     <top>
         <Label text="Combat!" styleClass="title-label" BorderPane.alignment="CENTER"/>
     </top>

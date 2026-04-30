@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.BorderPane;
 
 /**
  * Orchestrates the combat view.
@@ -23,6 +24,7 @@ public class CombatController implements ServiceAware {
     private GameService gameService;
     private CombatService combatService;
 
+    @FXML private BorderPane combatRoot;
     @FXML private Label heroName;
     @FXML private ProgressBar heroHpBar;
     @FXML private Label heroHpLabel;
@@ -53,6 +55,8 @@ public class CombatController implements ServiceAware {
     private void refreshView() {
         Hero hero = combatService.getCurrentHero();
         Enemy enemy = combatService.getCurrentEnemy();
+        
+        updateBackground(gameService.getCurrentLocation().getType());
 
         heroName.setText(hero.getDisplayName());
         heroHpLabel.setText(hero.getStats().getHp() + " / " + hero.getStats().getMaxHp() + " HP");
@@ -137,6 +141,23 @@ public class CombatController implements ServiceAware {
                 Platform.runLater(() -> 
                         SceneManager.getInstance().switchTo("/it/unicam/cs/mpgc/rpg129774/fxml/game.fxml"));
             }).start();
+        }
+    }
+
+    private void updateBackground(it.unicam.cs.mpgc.rpg129774.model.map.LocationType type) {
+        String imageName = switch (type) {
+            case TOWN -> "town.jpg";
+            case DUNGEON -> "dung.jpg";
+            case FOREST -> "forest.jpg";
+            case CAVE -> "cave.jpg";
+            case BOSS -> "drag.gif";
+        };
+        
+        java.net.URL resource = getClass().getResource("/it/unicam/cs/mpgc/rpg129774/img/" + imageName);
+        if (resource != null) {
+            combatRoot.setStyle("-fx-background-image: url('" + resource.toExternalForm() + "'); " +
+                                "-fx-background-size: cover; " +
+                                "-fx-background-position: center center;");
         }
     }
 }

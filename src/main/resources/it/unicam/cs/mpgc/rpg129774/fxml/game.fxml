@@ -2,7 +2,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 
-<BorderPane styleClass="game-root" xmlns:fx="http://javafx.com/fxml" fx:controller="it.unicam.cs.mpgc.rpg129774.ui.controller.GameController">
+<BorderPane fx:id="gameRoot" styleClass="game-root" xmlns:fx="http://javafx.com/fxml" fx:controller="it.unicam.cs.mpgc.rpg129774.ui.controller.GameController">
     <!-- Top Bar: Hero Stats -->
     <top>
         <HBox styleClass="top-bar" alignment="CENTER_LEFT" spacing="20">
