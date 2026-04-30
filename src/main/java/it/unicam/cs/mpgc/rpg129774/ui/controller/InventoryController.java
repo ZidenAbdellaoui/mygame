@@ -8,10 +8,16 @@ import it.unicam.cs.mpgc.rpg129774.service.GameService;
 import it.unicam.cs.mpgc.rpg129774.service.InventoryService;
 import it.unicam.cs.mpgc.rpg129774.ui.util.SceneManager;
 import it.unicam.cs.mpgc.rpg129774.ui.util.ServiceAware;
+import it.unicam.cs.mpgc.rpg129774.ui.util.StackedItem;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Handles the display and use of items in the hero's inventory.
@@ -25,7 +31,7 @@ public class InventoryController implements ServiceAware {
     @FXML private Label equippedArmorLabel;
     @FXML private javafx.scene.control.Button unequipWeaponBtn;
     @FXML private javafx.scene.control.Button unequipArmorBtn;
-    @FXML private ListView<Item> itemListView;
+    @FXML private ListView<StackedItem> itemListView;
 
     @Override
     public void setGameService(Object gameService) {
@@ -49,13 +55,22 @@ public class InventoryController implements ServiceAware {
         unequipArmorBtn.setVisible(a != null);
 
         itemListView.getItems().clear();
-        itemListView.getItems().addAll(inventoryService.getItems());
+        Map<String, List<Item>> grouped = inventoryService.getItems().stream()
+                .collect(Collectors.groupingBy(Item::getId));
+        
+        List<StackedItem> stacked = grouped.values().stream()
+                .map(list -> new StackedItem(list.get(0), list.size()))
+                .sorted(Comparator.comparing(s -> s.item().getName()))
+                .toList();
+                
+        itemListView.getItems().addAll(stacked);
     }
 
     @FXML
     private void onUseEquip() {
-        Item selected = itemListView.getSelectionModel().getSelectedItem();
-        if (selected == null) return;
+        StackedItem selectedStack = itemListView.getSelectionModel().getSelectedItem();
+        if (selectedStack == null) return;
+        Item selected = selectedStack.item();
 
         inventoryService.removeItem(selected);
 
@@ -81,8 +96,9 @@ public class InventoryController implements ServiceAware {
 
     @FXML
     private void onDrop() {
-        Item selected = itemListView.getSelectionModel().getSelectedItem();
-        if (selected != null) {
+        StackedItem selectedStack = itemListView.getSelectionModel().getSelectedItem();
+        if (selectedStack != null) {
+            Item selected = selectedStack.item();
             inventoryService.removeItem(selected);
             refreshView();
         }

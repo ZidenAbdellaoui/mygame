@@ -12,6 +12,7 @@ import it.unicam.cs.mpgc.rpg129774.model.item.Weapon;
 import it.unicam.cs.mpgc.rpg129774.service.GameService;
 import it.unicam.cs.mpgc.rpg129774.ui.util.SceneManager;
 import it.unicam.cs.mpgc.rpg129774.ui.util.ServiceAware;
+import it.unicam.cs.mpgc.rpg129774.ui.util.StackedItem;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
@@ -20,8 +21,11 @@ import javafx.scene.control.ListView;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * Handles the Town Shop where the player can buy items using gold.
@@ -33,6 +37,7 @@ public class ShopController implements ServiceAware {
 
     @FXML private Label goldLabel;
     @FXML private ListView<String> shopList;
+    @FXML private ListView<StackedItem> inventoryListView;
     @FXML private Label detailLabel;
 
     @Override
@@ -102,6 +107,18 @@ public class ShopController implements ServiceAware {
             shopList.getItems().add(item.getName() + " - " + item.getGoldValue() + " Gold");
         }
         if (selected >= 0) shopList.getSelectionModel().select(selected);
+
+        // Update inventory list
+        inventoryListView.getItems().clear();
+        Map<String, List<Item>> grouped = gameService.getInventoryService().getItems().stream()
+                .collect(Collectors.groupingBy(Item::getId));
+        
+        List<StackedItem> stacked = grouped.values().stream()
+                .map(list -> new StackedItem(list.get(0), list.size()))
+                .sorted(Comparator.comparing(s -> s.item().getName()))
+                .toList();
+                
+        inventoryListView.getItems().addAll(stacked);
     }
 
     @FXML
