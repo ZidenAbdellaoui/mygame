@@ -17,10 +17,11 @@ public class Quest {
     private final int goldReward;
     private final Map<String, Integer> requiredKills; // enemyId → count
     private final Map<String, Integer> currentKills;  // enemyId → count
+    private final String difficulty;
     private QuestStatus status;
 
     public Quest(String id, String title, String description, int xpReward, int goldReward,
-                 Map<String, Integer> requiredKills) {
+                 Map<String, Integer> requiredKills, String difficulty) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -29,6 +30,7 @@ public class Quest {
         this.requiredKills = new HashMap<>(requiredKills);
         this.currentKills = new HashMap<>();
         requiredKills.keySet().forEach(k -> this.currentKills.put(k, 0));
+        this.difficulty = difficulty != null ? difficulty : "Medium";
         this.status = QuestStatus.AVAILABLE;
     }
 
@@ -81,6 +83,7 @@ public class Quest {
     public String getId() { return id; }
     public String getTitle() { return title; }
     public String getDescription() { return description; }
+    public String getDifficulty() { return difficulty; }
     public int getXpReward() { return xpReward; }
     public int getGoldReward() { return goldReward; }
     public QuestStatus getStatus() { return status; }

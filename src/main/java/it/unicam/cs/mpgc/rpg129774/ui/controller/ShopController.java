@@ -122,6 +122,31 @@ public class ShopController implements ServiceAware {
     }
 
     @FXML
+    private void onBuyFive() {
+        int idx = shopList.getSelectionModel().getSelectedIndex();
+        if (idx < 0) return;
+        
+        Item itemToBuy = catalog.get(idx);
+        if (!(itemToBuy instanceof Potion)) {
+            showAlert("Invalid Item", "You can only buy potions in bulk.");
+            return;
+        }
+        
+        Hero hero = gameService.getCurrentState().getHero();
+        int totalCost = itemToBuy.getGoldValue() * 5;
+        
+        if (hero.spendGold(totalCost)) {
+            for (int i = 0; i < 5; i++) {
+                gameService.getInventoryService().addItem(itemToBuy); // They get an independent instance of the item
+            }
+            showAlert("Items Purchased", "You bought 5 " + itemToBuy.getName() + "(s).");
+            refreshView();
+        } else {
+            showAlert("Not Enough Gold", "You cannot afford 5 of these.");
+        }
+    }
+
+    @FXML
     private void onBack() {
         SceneManager.getInstance().switchTo("/it/unicam/cs/mpgc/rpg129774/fxml/game.fxml");
     }

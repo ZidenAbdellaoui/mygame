@@ -1,5 +1,22 @@
 [
   {
+    "id": "w_wood_sword",
+    "name": "Wood Sword",
+    "description": "A flimsy wooden sword.",
+    "goldValue": 5,
+    "type": "WEAPON",
+    "attackBonus": 2,
+    "accuracy": 0.85
+  },
+  {
+    "id": "a_cloth",
+    "name": "Cloth Armor",
+    "description": "Basic clothing that offers minimal protection.",
+    "goldValue": 5,
+    "type": "ARMOR",
+    "defenseBonus": 1
+  },
+  {
     "id": "w_iron_sword",
     "name": "Iron Sword",
     "description": "A standard issue iron sword.",

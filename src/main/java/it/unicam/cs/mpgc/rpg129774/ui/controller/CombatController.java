@@ -25,6 +25,7 @@ public class CombatController implements ServiceAware {
     private CombatService combatService;
 
     @FXML private BorderPane combatRoot;
+    @FXML private Label questProgressLabel;
     @FXML private Label heroName;
     @FXML private ProgressBar heroHpBar;
     @FXML private Label heroHpLabel;
@@ -57,6 +58,14 @@ public class CombatController implements ServiceAware {
         Enemy enemy = combatService.getCurrentEnemy();
         
         updateBackground(gameService.getCurrentLocation().getType());
+        
+        java.util.List<it.unicam.cs.mpgc.rpg129774.model.quest.Quest> activeQuests = gameService.getQuestService().getActiveQuests();
+        if (!activeQuests.isEmpty()) {
+            it.unicam.cs.mpgc.rpg129774.model.quest.Quest q = activeQuests.get(0);
+            questProgressLabel.setText("Active Quest: " + q.getTitle() + " (" + q.getProgressText() + ")");
+        } else {
+            questProgressLabel.setText("No Active Quests");
+        }
 
         heroName.setText(hero.getDisplayName());
         heroHpLabel.setText(hero.getStats().getHp() + " / " + hero.getStats().getMaxHp() + " HP");

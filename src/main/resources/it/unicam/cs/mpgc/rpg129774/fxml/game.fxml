@@ -5,11 +5,16 @@
 <BorderPane fx:id="gameRoot" styleClass="game-root" xmlns:fx="http://javafx.com/fxml" fx:controller="it.unicam.cs.mpgc.rpg129774.ui.controller.GameController">
     <!-- Top Bar: Hero Stats -->
     <top>
-        <HBox styleClass="top-bar" alignment="CENTER_LEFT" spacing="20">
-            <Label fx:id="heroNameLabel" styleClass="hero-name-label"/>
-            <Region HBox.hgrow="ALWAYS" />
-            <Label fx:id="heroStatsLabel" styleClass="stats-label" wrapText="true" textAlignment="RIGHT"/>
-        </HBox>
+        <VBox styleClass="top-bar" spacing="5">
+            <HBox alignment="CENTER_LEFT" spacing="20">
+                <Label fx:id="heroNameLabel" styleClass="hero-name-label"/>
+                <Region HBox.hgrow="ALWAYS" />
+                <Label fx:id="heroStatsLabel" styleClass="stats-label" wrapText="true" textAlignment="RIGHT"/>
+            </HBox>
+            <HBox alignment="CENTER">
+                <Label fx:id="questProgressLabel" styleClass="quest-progress-label" style="-fx-text-fill: gold; -fx-font-weight: bold;"/>
+            </HBox>
+        </VBox>
     </top>
 
     <!-- Center: Location Info & Actions -->

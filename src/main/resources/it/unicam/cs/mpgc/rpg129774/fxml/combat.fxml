@@ -4,7 +4,10 @@
 
 <BorderPane fx:id="combatRoot" styleClass="combat-root" xmlns:fx="http://javafx.com/fxml" fx:controller="it.unicam.cs.mpgc.rpg129774.ui.controller.CombatController">
     <top>
-        <Label text="Combat!" styleClass="title-label" BorderPane.alignment="CENTER"/>
+        <VBox alignment="CENTER" spacing="5">
+            <Label text="Combat!" styleClass="title-label"/>
+            <Label fx:id="questProgressLabel" styleClass="quest-progress-label" style="-fx-text-fill: gold; -fx-font-weight: bold;"/>
+        </VBox>
     </top>
     
     <center>

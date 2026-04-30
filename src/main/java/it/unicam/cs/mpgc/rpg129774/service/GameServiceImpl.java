@@ -89,7 +89,7 @@ public class GameServiceImpl implements GameService {
             List<QuestData> data = gson.fromJson(reader, listType);
             for (QuestData d : data) {
                 questTemplates.add(new Quest(d.id, d.title, d.description,
-                        d.xpReward, d.goldReward, d.requiredKills != null ? d.requiredKills : Map.of()));
+                        d.xpReward, d.goldReward, d.requiredKills != null ? d.requiredKills : Map.of(), d.difficulty));
             }
         } catch (Exception e) {
             LOGGER.severe("Failed to load quests.json: " + e.getMessage());
@@ -101,6 +101,17 @@ public class GameServiceImpl implements GameService {
     @Override
     public GameState newGame(String heroName, CharacterClass characterClass) {
         Hero hero = new Hero(heroName, characterClass);
+        
+        it.unicam.cs.mpgc.rpg129774.model.item.Weapon woodSword = new it.unicam.cs.mpgc.rpg129774.model.item.Weapon(
+                "w_wood_sword", "Wood Sword", "A flimsy wooden sword.", 5, 2, 0.85);
+        it.unicam.cs.mpgc.rpg129774.model.item.Armor clothArmor = new it.unicam.cs.mpgc.rpg129774.model.item.Armor(
+                "a_cloth", "Cloth Armor", "Basic clothing that offers minimal protection.", 5, 1);
+        
+        hero.getInventory().addItem(woodSword);
+        hero.getInventory().addItem(clothArmor);
+        hero.equipWeapon(woodSword);
+        hero.equipArmor(clothArmor);
+
         String startLocationId = locationMap.isEmpty() ? "town" : locationMap.keySet().iterator().next();
         currentState = new GameState(hero, startLocationId);
         initSubServices();
@@ -206,7 +217,7 @@ public class GameServiceImpl implements GameService {
     }
 
     private static class QuestData {
-        String id, title, description;
+        String id, title, description, difficulty;
         int xpReward, goldReward;
         Map<String, Integer> requiredKills;
     }

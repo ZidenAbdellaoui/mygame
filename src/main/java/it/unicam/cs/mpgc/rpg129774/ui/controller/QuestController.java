@@ -38,6 +38,8 @@ public class QuestController implements ServiceAware {
     @FXML
     public void initialize() {
         if (questService != null) {
+            setupCellFactory(availableList);
+            setupCellFactory(activeList);
             refreshLists();
             // Show quest detail when user clicks on available list
             availableList.getSelectionModel().selectedIndexProperty().addListener(
@@ -48,6 +50,26 @@ public class QuestController implements ServiceAware {
         }
     }
 
+    private void setupCellFactory(ListView<String> listView) {
+        listView.setCellFactory(lv -> new javafx.scene.control.ListCell<>() {
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                    setStyle("");
+                } else {
+                    setText(item);
+                    if (item.contains("- Easy")) setStyle("-fx-text-fill: lightgreen; -fx-font-weight: bold;");
+                    else if (item.contains("- Medium")) setStyle("-fx-text-fill: yellow; -fx-font-weight: bold;");
+                    else if (item.contains("- Hard")) setStyle("-fx-text-fill: orange; -fx-font-weight: bold;");
+                    else if (item.contains("- Epic")) setStyle("-fx-text-fill: red; -fx-font-weight: bold;");
+                    else setStyle("");
+                }
+            }
+        });
+    }
+
     // ---- Refresh ----
 
     private void refreshLists() {
@@ -56,11 +78,11 @@ public class QuestController implements ServiceAware {
 
         availableList.getItems().clear();
         availableQuests.forEach(q -> availableList.getItems().add(
-                q.getTitle() + "  [+" + q.getXpReward() + " XP, +" + q.getGoldReward() + " G]"));
+                q.getTitle() + "  [+" + q.getXpReward() + " XP, +" + q.getGoldReward() + " G] - " + q.getDifficulty()));
 
         activeList.getItems().clear();
         activeQuests.forEach(q -> activeList.getItems().add(
-                q.getTitle() + "  — " + q.getProgressText()));
+                q.getTitle() + "  — " + q.getProgressText() + " - " + q.getDifficulty()));
 
         progressLabel.setText("");
         detailLabel.setText("");

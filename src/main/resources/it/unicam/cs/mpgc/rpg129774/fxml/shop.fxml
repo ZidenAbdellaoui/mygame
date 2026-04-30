@@ -17,6 +17,7 @@
             
             <HBox alignment="CENTER" spacing="20">
                 <Button text="Buy Item" onAction="#onBuy" styleClass="action-btn, primary-btn"/>
+                <Button text="Buy 5x Potion" onAction="#onBuyFive" styleClass="action-btn, primary-btn"/>
                 <Button text="Leave Shop" onAction="#onBack" styleClass="sys-btn"/>
             </HBox>
         </VBox>

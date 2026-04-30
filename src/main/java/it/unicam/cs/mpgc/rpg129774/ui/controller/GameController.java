@@ -22,6 +22,7 @@ public class GameController implements ServiceAware {
     @FXML private BorderPane gameRoot;
     @FXML private Label heroNameLabel;
     @FXML private Label heroStatsLabel;
+    @FXML private Label questProgressLabel;
     @FXML private Label locationNameLabel;
     @FXML private Label locationDescLabel;
     @FXML private VBox travelButtonsContainer;
@@ -54,6 +55,14 @@ public class GameController implements ServiceAware {
 
         Location loc = gameService.getCurrentLocation();
         updateBackground(loc.getType());
+        
+        java.util.List<it.unicam.cs.mpgc.rpg129774.model.quest.Quest> activeQuests = gameService.getQuestService().getActiveQuests();
+        if (!activeQuests.isEmpty()) {
+            it.unicam.cs.mpgc.rpg129774.model.quest.Quest q = activeQuests.get(0);
+            questProgressLabel.setText("Active Quest: " + q.getTitle() + " (" + q.getProgressText() + ")");
+        } else {
+            questProgressLabel.setText("No Active Quests");
+        }
         
         if (loc.getType() == it.unicam.cs.mpgc.rpg129774.model.map.LocationType.TOWN) {
             int sleepCost = gameService.getCurrentState().getDayCounter() * 5;
