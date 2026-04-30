@@ -5,15 +5,23 @@
 <BorderPane styleClass="menu-root" xmlns:fx="http://javafx.com/fxml" fx:controller="it.unicam.cs.mpgc.rpg129774.ui.controller.ShopController">
     <top>
         <VBox alignment="CENTER" spacing="10">
+            <padding>
+                <!-- Adding some padding to prevent the title from hitting the top -->
+                <javafx.geometry.Insets top="20" bottom="10"/> 
+            </padding>
             <Label text="Town Shop" styleClass="title-label"/>
             <Label fx:id="goldLabel" styleClass="subtitle-label"/>
         </VBox>
     </top>
     
     <center>
-        <HBox alignment="CENTER" spacing="40">
+        <HBox alignment="TOP_CENTER" spacing="40">
+            <padding>
+                <javafx.geometry.Insets top="20"/>
+            </padding>
+            
             <!-- Shop Side -->
-            <VBox alignment="CENTER" spacing="10">
+            <VBox alignment="TOP_CENTER" spacing="10">
                 <Label text="Shop Catalog" styleClass="subtitle-label"/>
                 <ListView fx:id="shopList" prefHeight="300" prefWidth="350"/>
                 <Label fx:id="detailLabel" styleClass="desc-label" wrapText="true" maxWidth="340" textAlignment="CENTER" prefHeight="80"/>
@@ -24,10 +32,18 @@
             </VBox>
 
             <!-- Inventory Side -->
-            <VBox alignment="CENTER" spacing="10">
+            <VBox alignment="TOP_CENTER" spacing="10">
                 <Label text="Your Inventory" styleClass="subtitle-label"/>
                 <ListView fx:id="inventoryListView" prefHeight="300" prefWidth="350"/>
-                <Button text="Leave Shop" onAction="#onBack" styleClass="sys-btn"/>
+                
+                <!-- Added a spacer Region or empty Label to push the button down 
+                     to align with the shop buttons -->
+                <Region prefHeight="80" /> 
+                
+                <HBox alignment="CENTER">
+                    <!-- Style updated to match the Buy button -->
+                    <Button text="Leave Shop" onAction="#onBack" styleClass="action-btn, primary-btn"/>
+                </HBox>
             </VBox>
         </HBox>
     </center>

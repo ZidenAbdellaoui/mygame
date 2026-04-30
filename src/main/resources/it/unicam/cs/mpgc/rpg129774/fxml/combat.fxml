@@ -5,7 +5,10 @@
 <BorderPane fx:id="combatRoot" styleClass="combat-root" xmlns:fx="http://javafx.com/fxml" fx:controller="it.unicam.cs.mpgc.rpg129774.ui.controller.CombatController">
     <top>
         <VBox alignment="CENTER" spacing="5">
-            <Label text="Combat!" styleClass="title-label"/>
+            <HBox alignment="CENTER" spacing="10">
+                <Label text="Combat!" styleClass="title-label"/>
+                <Button text="[FS]" onAction="#onToggleFullScreen" styleClass="sys-btn" scaleX="0.6" scaleY="0.6"/>
+            </HBox>
             <Label fx:id="questProgressLabel" styleClass="quest-progress-label" style="-fx-text-fill: gold; -fx-font-weight: bold;"/>
         </VBox>
     </top>

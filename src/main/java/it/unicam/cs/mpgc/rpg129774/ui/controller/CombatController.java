@@ -153,6 +153,11 @@ public class CombatController implements ServiceAware {
         }
     }
 
+    @FXML
+    private void onToggleFullScreen() {
+        SceneManager.getInstance().toggleFullScreen();
+    }
+
     private void updateBackground(it.unicam.cs.mpgc.rpg129774.model.map.LocationType type) {
         String imageName = switch (type) {
             case TOWN -> "town.jpg";

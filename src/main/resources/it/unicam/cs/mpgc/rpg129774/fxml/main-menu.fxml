@@ -10,6 +10,7 @@
         <VBox spacing="15" alignment="CENTER" prefWidth="300">
             <Button text="New Game" onAction="#onNewGame" styleClass="menu-btn, primary-btn" maxWidth="Infinity"/>
             <Button text="Load Game" onAction="#onLoadGame" styleClass="menu-btn" maxWidth="Infinity"/>
+            <Button text="Toggle Full Screen" onAction="#onToggleFullScreen" styleClass="menu-btn" maxWidth="Infinity"/>
             <Button text="Exit Game" onAction="#onExit" styleClass="menu-btn, danger-btn" maxWidth="Infinity"/>
         </VBox>
         <VBox spacing="10">

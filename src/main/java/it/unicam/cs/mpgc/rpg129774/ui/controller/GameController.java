@@ -149,6 +149,11 @@ public class GameController implements ServiceAware {
     }
 
     @FXML
+    private void onToggleFullScreen() {
+        SceneManager.getInstance().toggleFullScreen();
+    }
+
+    @FXML
     private void onMainMenu() {
         SceneManager.getInstance().switchTo("/it/unicam/cs/mpgc/rpg129774/fxml/main-menu.fxml");
     }

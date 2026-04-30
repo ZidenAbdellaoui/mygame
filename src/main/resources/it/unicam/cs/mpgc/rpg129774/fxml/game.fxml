@@ -8,6 +8,7 @@
         <VBox styleClass="top-bar" spacing="5">
             <HBox alignment="CENTER_LEFT" spacing="20">
                 <Label fx:id="heroNameLabel" styleClass="hero-name-label"/>
+                <Button text="[FS]" onAction="#onToggleFullScreen" styleClass="sys-btn" scaleX="0.7" scaleY="0.7"/>
                 <Region HBox.hgrow="ALWAYS" />
                 <Label fx:id="heroStatsLabel" styleClass="stats-label" wrapText="true" textAlignment="RIGHT"/>
             </HBox>

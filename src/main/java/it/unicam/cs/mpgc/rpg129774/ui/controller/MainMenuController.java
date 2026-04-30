@@ -62,6 +62,11 @@ public class MainMenuController implements ServiceAware {
     }
 
     @FXML
+    private void onToggleFullScreen() {
+        SceneManager.getInstance().toggleFullScreen();
+    }
+
+    @FXML
     private void onExit() {
         Alert alert = new Alert(AlertType.CONFIRMATION, "Are you sure you want to quit?",
                 ButtonType.YES, ButtonType.NO);

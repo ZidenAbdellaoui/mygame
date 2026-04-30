@@ -62,7 +62,13 @@ public class SceneManager {
                     Objects.requireNonNull(getClass().getResource(
                             "/it/unicam/cs/mpgc/rpg129774/css/style.css")).toExternalForm());
 
-            fadeIn(root, () -> primaryStage.setScene(scene));
+            boolean wasFullScreen = primaryStage.isFullScreen();
+            fadeIn(root, () -> {
+                primaryStage.setScene(scene);
+                if (wasFullScreen) {
+                    primaryStage.setFullScreen(true);
+                }
+            });
             primaryStage.show();
         } catch (IOException e) {
             throw new RuntimeException("Failed to load scene: " + fxmlPath, e);
@@ -76,6 +82,12 @@ public class SceneManager {
         ft.setFromValue(0);
         ft.setToValue(1);
         ft.play();
+    }
+
+    public void toggleFullScreen() {
+        if (primaryStage != null) {
+            primaryStage.setFullScreen(!primaryStage.isFullScreen());
+        }
     }
 
     public Stage getPrimaryStage() { return primaryStage; }
