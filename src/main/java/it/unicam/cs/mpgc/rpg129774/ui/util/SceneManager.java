@@ -31,6 +31,15 @@ public class SceneManager {
     public void init(Stage stage, Object gameService) {
         this.primaryStage = stage;
         this.injectedService = gameService;
+        
+        // Create a single persistent scene to prevent fullscreen flickering
+        Scene scene = new Scene(new javafx.scene.layout.Pane());
+        scene.getStylesheets().add(
+                Objects.requireNonNull(getClass().getResource(
+                        "/it/unicam/cs/mpgc/rpg129774/css/style.css")).toExternalForm());
+        
+        primaryStage.setScene(scene);
+        primaryStage.setFullScreenExitHint(""); // Cleaner fullscreen experience
     }
 
     /**
@@ -57,18 +66,7 @@ public class SceneManager {
             });
 
             Parent root = loader.load();
-            Scene scene = new Scene(root);
-            scene.getStylesheets().add(
-                    Objects.requireNonNull(getClass().getResource(
-                            "/it/unicam/cs/mpgc/rpg129774/css/style.css")).toExternalForm());
-
-            boolean wasFullScreen = primaryStage.isFullScreen();
-            fadeIn(root, () -> {
-                primaryStage.setScene(scene);
-                if (wasFullScreen) {
-                    primaryStage.setFullScreen(true);
-                }
-            });
+            fadeIn(root, () -> primaryStage.getScene().setRoot(root));
             primaryStage.show();
         } catch (IOException e) {
             throw new RuntimeException("Failed to load scene: " + fxmlPath, e);
