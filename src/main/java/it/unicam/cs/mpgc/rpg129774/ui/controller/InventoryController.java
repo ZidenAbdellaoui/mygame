@@ -32,6 +32,7 @@ public class InventoryController implements ServiceAware {
     @FXML private javafx.scene.control.Button unequipWeaponBtn;
     @FXML private javafx.scene.control.Button unequipArmorBtn;
     @FXML private ListView<StackedItem> itemListView;
+    @FXML private Label itemStatsLabel;
 
     @Override
     public void setGameService(Object gameService) {
@@ -42,6 +43,15 @@ public class InventoryController implements ServiceAware {
     @FXML
     public void initialize() {
         if (inventoryService != null) refreshView();
+        
+        itemListView.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal != null) {
+                Item item = newVal.item();
+                itemStatsLabel.setText(item.getDescription() + "\nValue: " + item.getValue() + "G");
+            } else {
+                itemStatsLabel.setText("");
+            }
+        });
     }
 
     private void refreshView() {

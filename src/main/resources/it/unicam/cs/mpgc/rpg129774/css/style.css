@@ -8,6 +8,7 @@
 /* Base Texts */
 .label {
     -fx-text-fill: #e5e5e5;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 3, 0, 0, 0);
 }
 
 .title-label {
@@ -20,12 +21,18 @@
 
 .subtitle-label {
     -fx-font-size: 24px;
-    -fx-text-fill: #ff0000;
+    -fx-text-fill: #a0a0a0;
+    -fx-background-color: rgba(0, 0, 0, 0.6);
+    -fx-padding: 5 10;
+    -fx-background-radius: 5;
 }
 
 .desc-label {
     -fx-font-size: 16px;
     -fx-text-fill: #cccccc;
+    -fx-background-color: rgba(0, 0, 0, 0.7);
+    -fx-padding: 15;
+    -fx-background-radius: 8;
 }
 
 /* Buttons */
@@ -130,16 +137,25 @@
     -fx-font-size: 24px;
     -fx-font-weight: bold;
     -fx-text-fill: #d4af37;
+    -fx-background-color: rgba(0, 0, 0, 0.6);
+    -fx-padding: 5 10;
+    -fx-background-radius: 5;
 }
 
 .stats-label {
     -fx-font-size: 14px;
     -fx-text-fill: #aaa;
+    -fx-background-color: rgba(0, 0, 0, 0.6);
+    -fx-padding: 5 10;
+    -fx-background-radius: 5;
 }
 
 .location-title {
     -fx-font-size: 48px;
     -fx-text-fill: white;
+    -fx-background-color: rgba(0, 0, 0, 0.6);
+    -fx-padding: 10 20;
+    -fx-background-radius: 8;
 }
 
 .bottom-bar {

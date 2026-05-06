@@ -22,6 +22,7 @@
             
             <ListView fx:id="itemListView" prefHeight="300" prefWidth="400"/>
             
+            <Label fx:id="itemStatsLabel" styleClass="desc-label" wrapText="true" minHeight="60" prefHeight="60" maxWidth="400" textAlignment="CENTER"/>
             <HBox alignment="CENTER" spacing="20">
                 <Button text="Equip/Use" onAction="#onUseEquip" styleClass="action-btn, primary-btn"/>
                 <Button text="Drop" onAction="#onDrop" styleClass="action-btn, danger-btn"/>

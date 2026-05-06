@@ -18,9 +18,10 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Classic Fantasy RPG");
+        primaryStage.initStyle(javafx.stage.StageStyle.UNDECORATED);
         primaryStage.setWidth(1366);
         primaryStage.setHeight(768);
-        primaryStage.setFullScreen(true);
+        primaryStage.setMaximized(true);
 
         // Core dependency graph
         GameService gameService = new GameServiceImpl();

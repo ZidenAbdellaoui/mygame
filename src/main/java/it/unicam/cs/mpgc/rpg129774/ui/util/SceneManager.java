@@ -39,7 +39,6 @@ public class SceneManager {
                         "/it/unicam/cs/mpgc/rpg129774/css/style.css")).toExternalForm());
         
         primaryStage.setScene(scene);
-        primaryStage.setFullScreenExitHint(""); // Cleaner fullscreen experience
     }
 
     /**
@@ -84,7 +83,7 @@ public class SceneManager {
 
     public void toggleFullScreen() {
         if (primaryStage != null) {
-            primaryStage.setFullScreen(!primaryStage.isFullScreen());
+            primaryStage.setMaximized(!primaryStage.isMaximized());
         }
     }
 
