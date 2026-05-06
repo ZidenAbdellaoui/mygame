@@ -47,7 +47,7 @@ public class InventoryController implements ServiceAware {
         itemListView.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal != null) {
                 Item item = newVal.item();
-                itemStatsLabel.setText(item.getDescription() + "\nValue: " + item.getValue() + "G");
+                itemStatsLabel.setText(item.getDescription() + "\nValue: " + item.getGoldValue() + "G");
             } else {
                 itemStatsLabel.setText("");
             }
